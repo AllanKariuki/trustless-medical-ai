@@ -1,0 +1,63 @@
+type PatientMetadata = record {
+  anonymized_id : text;
+  age_range : text;
+  study_type : text;
+  acquisition_date : text;
+};
+
+type MedicalFinding = record {
+  finding : text;
+  location : text;
+  severity : text;
+  confidence : float32;
+};
+
+type MedicalDiagnosisResult = record {
+  id : nat64;
+  diagnosis : text;
+  confidence_score : float32;
+  medical_findings : vec MedicalFinding;
+  timestamp : nat64;
+  signature : vec nat8;
+  public_key : vec nat8;
+  fda_compliant : bool;
+  hipaa_compliant : bool;
+  model_version : text;
+  patient_metadata : PatientMetadata;
+};
+
+type MedicalAuditEntry = record {
+  id : nat64;
+  diagnosis_id : nat64;
+  action : text;
+  timestamp : nat64;
+  principal : principal;
+  details : text;
+  compliance_flags : vec text;
+};
+
+type ComplianceReport = record {
+  diagnosis_id : nat64;
+  fda_status : text;
+  hipaa_status : text;
+  audit_trail_complete : bool;
+  signature_verified : bool;
+  regulatory_notes : vec text;
+  certification_level : text;
+  generated_timestamp : nat64;
+};
+
+type Result = variant { Ok : MedicalDiagnosisResult; Err : text };
+type Result_1 = variant { Ok : bool; Err : text };
+type Result_2 = variant { Ok : ComplianceReport; Err : text };
+
+service : {
+  analyze_medical_image : (vec nat8, PatientMetadata) -> (Result);
+  get_diagnosis : (nat64) -> (opt MedicalDiagnosisResult) query;
+  get_all_diagnoses : () -> (vec MedicalDiagnosisResult) query;
+  get_medical_audit_trail : () -> (vec MedicalAuditEntry) query;
+  get_audit_trail_for_diagnosis : (nat64) -> (vec MedicalAuditEntry) query;
+  verify_diagnosis_signature : (nat64) -> (Result_1) query;
+  get_fda_compliance_report : (nat64) -> (Result_2);
+  get_system_health : () -> (text) query;
+}

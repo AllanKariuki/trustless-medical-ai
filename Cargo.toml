@@ -1,0 +1,14 @@
+[workspace]
+members = [
+    "src/medical_ai_backend"
+]
+
+[workspace.dependencies]
+ic-cdk = "0.13"
+ic-cdk-macros = "0.13"
+candid = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+ic-stable-structures = "0.6"
+sha2 = "0.10"
+hex = "0.4"
+image = { version = "0.24", default-features = false, features = ["png", "jpeg"] }

@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-medical bg-medical-light text-medical-dark;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .medical-card {
+    @apply bg-white rounded-lg shadow-md border border-gray-200 p-6;
+  }
+  
+  .medical-button {
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  }
+  
+  .medical-button-primary {
+    @apply medical-button bg-medical-primary text-white hover:bg-blue-700;
+  }
+  
+  .medical-button-secondary {
+    @apply medical-button bg-medical-secondary text-white hover:bg-teal-700;
+  }
+  
+  .medical-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-medical-primary focus:border-transparent;
+  }
+  
+  .compliance-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .fda-compliant {
+    @apply compliance-badge bg-compliance-fda text-white;
+  }
+  
+  .hipaa-compliant {
+    @apply compliance-badge bg-compliance-hipaa text-white;
+  }
+  
+  .audit-badge {
+    @apply compliance-badge bg-compliance-audit text-white;
+  }
+  
+  .confidence-meter {
+    @apply w-full bg-gray-200 rounded-full h-2.5;
+  }
+  
+  .confidence-bar {
+    @apply h-2.5 rounded-full transition-all duration-500;
+  }
+  
+  .medical-loading {
+    @apply animate-pulse-slow;
+  }
+}
+
+@layer utilities {
+  .text-medical-primary {
+    @apply text-medical-primary;
+  }
+  
+  .bg-medical-gradient {
+    background: linear-gradient(135deg, #1e40af 0%, #0f766e 100%);
+  }
+}
