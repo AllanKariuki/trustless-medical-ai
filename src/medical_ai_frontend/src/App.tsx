@@ -3,7 +3,7 @@ import { Shield, Activity, FileCheck, Users, Settings, LogOut, LogIn } from 'luc
 import { useICPAgent, MedicalDiagnosisResult, MedicalAuditEntry, ComplianceReport } from './hooks/useICPAgent';
 import ImageUpload from './components/ImageUpload';
 import DiagnosisResult from './components/DiagnosisResult';
-import ComplianceReport as ComplianceReportComponent from './components/ComplianceReport';
+import ComplianceReportComponent from './components/ComplianceReportComponent';
 import AuditTrail from './components/AuditTrail';
 
 type ActiveTab = 'upload' | 'results' | 'compliance' | 'audit';

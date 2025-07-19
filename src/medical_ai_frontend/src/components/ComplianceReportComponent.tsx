@@ -19,7 +19,7 @@ interface ComplianceReportProps {
   onRefresh: () => void;
 }
 
-const ComplianceReport: React.FC<ComplianceReportProps> = ({ diagnoses, onRefresh }) => {
+const ComplianceReportComponent: React.FC<ComplianceReportProps> = ({ diagnoses, onRefresh }) => {
   const { getFDAComplianceReport, verifyDiagnosisSignature } = useICPAgent();
   
   const [selectedDiagnosis, setSelectedDiagnosis] = useState<MedicalDiagnosisResult | null>(null);
@@ -419,4 +419,4 @@ const ComplianceReport: React.FC<ComplianceReportProps> = ({ diagnoses, onRefres
   );
 };
 
-export default ComplianceReport;
+export default ComplianceReportComponent;
