@@ -1,12 +1,14 @@
 use candid::{CandidType, Deserialize, Principal};
-use ic_cdk::api::management_canister::ecdsa::{
-    ecdsa_public_key, sign_with_ecdsa, EcdsaCurve, EcdsaKeyId, EcdsaPublicKeyArgument,
-    SignWithEcdsaArgument,
+use ic_cdk::api::{
+    management_canister::{
+        ecdsa::{ecdsa_public_key, sign_with_ecdsa, EcdsaCurve, EcdsaKeyId, EcdsaPublicKeyArgument, SignWithEcdsaArgument},
+    },
 };
+use ic_cdk::caller as msg_caller;
 use ic_cdk::api::time;
 use ic_cdk_macros::{init, post_upgrade, pre_upgrade, query, update};
 use ic_stable_structures::memory_manager::{MemoryId, MemoryManager, VirtualMemory};
-use ic_stable_structures::{BoundedStorable, DefaultMemoryImpl, StableBTreeMap, Storable};
+use ic_stable_structures::{DefaultMemoryImpl, StableBTreeMap, Storable};
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::borrow::Cow;
@@ -52,7 +54,7 @@ pub struct MedicalAuditEntry {
     pub diagnosis_id: u64,
     pub action: String,
     pub timestamp: u64,
-    pub principal: Principal,
+    pub principal_id: Principal,
     pub details: String,
     pub compliance_flags: Vec<String>,
 }
@@ -87,11 +89,8 @@ impl Storable for MedicalDiagnosisResult {
     fn from_bytes(bytes: Cow<[u8]>) -> Self {
         candid::decode_one(&bytes).unwrap()
     }
-}
 
-impl BoundedStorable for MedicalDiagnosisResult {
-    const MAX_SIZE: u32 = 8192;
-    const IS_FIXED_SIZE: bool = false;
+    const BOUND: ic_stable_structures::storable::Bound = ic_stable_structures::storable::Bound::Bounded { max_size: 8192, is_fixed_size: false };
 }
 
 impl Storable for MedicalAuditEntry {
@@ -102,11 +101,8 @@ impl Storable for MedicalAuditEntry {
     fn from_bytes(bytes: Cow<[u8]>) -> Self {
         candid::decode_one(&bytes).unwrap()
     }
-}
 
-impl BoundedStorable for MedicalAuditEntry {
-    const MAX_SIZE: u32 = 4096;
-    const IS_FIXED_SIZE: bool = false;
+    const BOUND: ic_stable_structures::storable::Bound = ic_stable_structures::storable::Bound::Bounded { max_size: 4096, is_fixed_size: false };
 }
 
 // Global State
@@ -296,7 +292,7 @@ fn add_audit_entry(diagnosis_id: u64, action: String, details: String) {
         diagnosis_id,
         action,
         timestamp: time(),
-        principal: ic_cdk::caller(),
+        principal_id: msg_caller(),
         details,
         compliance_flags: vec!["FDA_AUDIT".to_string(), "HIPAA_LOG".to_string()],
     };

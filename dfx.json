@@ -4,7 +4,8 @@
     "medical_ai_backend": {
       "type": "rust",
       "package": "medical_ai_backend",
-      "candid": "src/medical_ai_backend/medical_ai_backend.did"
+      "candid": "src/medical_ai_backend/medical_ai_backend.did",
+      "root": "src/medical_ai_backend"
     },
     "medical_ai_frontend": {
       "type": "assets",

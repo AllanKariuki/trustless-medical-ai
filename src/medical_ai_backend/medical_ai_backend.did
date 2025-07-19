@@ -31,7 +31,7 @@ type MedicalAuditEntry = record {
   diagnosis_id : nat64;
   action : text;
   timestamp : nat64;
-  principal : principal;
+  principal_id : principal;
   details : text;
   compliance_flags : vec text;
 };
