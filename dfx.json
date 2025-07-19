@@ -3,15 +3,12 @@
   "canisters": {
     "medical_ai_backend": {
       "type": "rust",
-      "package": "medical_ai_backend"
+      "package": "medical_ai_backend",
+      "candid": "src/medical_ai_backend/medical_ai_backend.did"
     },
     "medical_ai_frontend": {
       "type": "assets",
-      "source": ["src/medical_ai_frontend/dist"]
-    },
-    "internet_identity": {
-      "type": "pull",
-      "id": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+      "source": ["src/medical_ai_frontend/dist/"]
     }
   },
   "defaults": {
