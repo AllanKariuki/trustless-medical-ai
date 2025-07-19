@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Shield, Activity, FileCheck, Users, Settings, LogOut, LogIn } from 'lucide-react';
-import { useICPAgent, MedicalDiagnosisResult, MedicalAuditEntry, ComplianceReport } from './hooks/useICPAgent';
+import { useState, useEffect } from 'react';
+import { Shield, Activity, FileCheck, Users, LogOut, LogIn } from 'lucide-react';
+import { useICPAgent, MedicalDiagnosisResult, MedicalAuditEntry } from './hooks/useICPAgent';
 import ImageUpload from './components/ImageUpload';
 import DiagnosisResult from './components/DiagnosisResult';
 import ComplianceReportComponent from './components/ComplianceReportComponent';

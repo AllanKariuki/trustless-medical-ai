@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Shield, 
   FileCheck, 
@@ -8,8 +8,7 @@ import {
   AlertTriangle, 
   XCircle,
   Award,
-  Eye,
-  Clock
+  Eye
 } from 'lucide-react';
 import { useICPAgent, MedicalDiagnosisResult, ComplianceReport as ComplianceReportType } from '../hooks/useICPAgent';
 import { formatMedicalTimestamp } from '../utils/medicalUtils';

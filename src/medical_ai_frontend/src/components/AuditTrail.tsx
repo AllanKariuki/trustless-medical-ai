@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { 
   History, 
   Search, 
@@ -10,7 +10,6 @@ import {
   Activity,
   FileText,
   User,
-  Clock,
   ChevronDown,
   ChevronRight
 } from 'lucide-react';
@@ -48,7 +47,7 @@ const AuditTrail: React.FC<AuditTrailProps> = ({ auditTrail, diagnoses, onRefres
       const matchesSearch = searchTerm === '' || 
         entry.details.toLowerCase().includes(searchTerm.toLowerCase()) ||
         entry.action.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        entry.principal.toString().includes(searchTerm);
+        entry.principal_id.toString().includes(searchTerm);
       
       const matchesAction = selectedAction === '' || entry.action === selectedAction;
       const matchesDiagnosis = selectedDiagnosisId === '' || 
@@ -308,7 +307,7 @@ const AuditTrail: React.FC<AuditTrailProps> = ({ auditTrail, diagnoses, onRefres
                     <div className="flex items-center space-x-1">
                       <User className="h-3 w-3" />
                       <span className="truncate max-w-24">
-                        {entry.principal.toString().substring(0, 12)}...
+                        {entry.principal_id.toString().substring(0, 12)}...
                       </span>
                     </div>
                     
@@ -352,7 +351,7 @@ const AuditTrail: React.FC<AuditTrailProps> = ({ auditTrail, diagnoses, onRefres
                         <div>
                           <span className="text-gray-600">Principal: </span>
                           <span className="font-mono text-xs break-all">
-                            {entry.principal.toString()}
+                            {entry.principal_id.toString()}
                           </span>
                         </div>
                       </div>

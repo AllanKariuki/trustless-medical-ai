@@ -63,9 +63,6 @@
 }
 
 @layer utilities {
-  .text-medical-primary {
-    @apply text-medical-primary;
-  }
   
   .bg-medical-gradient {
     background: linear-gradient(135deg, #1e40af 0%, #0f766e 100%);

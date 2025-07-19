@@ -37,7 +37,7 @@ export interface MedicalAuditEntry {
   diagnosis_id: bigint;
   action: string;
   timestamp: bigint;
-  principal: Principal;
+  principal_id: Principal;
   details: string;
   compliance_flags: string[];
 }
@@ -88,7 +88,7 @@ const idlFactory = ({ IDL }: any) => {
     'diagnosis_id': IDL.Nat64,
     'action': IDL.Text,
     'timestamp': IDL.Nat64,
-    'principal': IDL.Principal,
+    'principal_id': IDL.Principal,
     'details': IDL.Text,
     'compliance_flags': IDL.Vec(IDL.Text),
   });
@@ -129,7 +129,7 @@ export const useICPAgent = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   // Get canister ID from environment or use local development ID
-  const canisterId = process.env.REACT_APP_MEDICAL_AI_BACKEND_CANISTER_ID || 'rdmx6-jaaaa-aaaaa-aaadq-cai';
+  const canisterId = process.env.REACT_APP_MEDICAL_AI_BACKEND_CANISTER_ID || 'uxrrr-q7777-77774-qaaaq-cai';
   
   // Use local replica for development
   const host = process.env.NODE_ENV === 'production' 
@@ -198,7 +198,7 @@ export const useICPAgent = () => {
       
       const identityProvider = process.env.NODE_ENV === 'production'
         ? 'https://identity.ic0.app'
-        : `http://localhost:4943?canisterId=rdmx6-jaaaa-aaaaa-aaadq-cai`;
+        : `http://localhost:4943?canisterId=uxrrr-q7777-77774-qaaaq-cai`;
 
       await authClient.login({
         identityProvider,

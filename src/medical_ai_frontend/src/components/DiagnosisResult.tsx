@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   FileText, 
   Shield, 
@@ -7,7 +7,6 @@ import {
   AlertTriangle, 
   Activity,
   Clock,
-  User,
   ChevronRight,
   Verified
 } from 'lucide-react';
